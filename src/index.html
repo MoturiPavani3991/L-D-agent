@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!--     
+    <a id='i05dm_iLSdxGRkP3Y3VSqQ' class='gie-single' href='http://www.gettyimages.in/detail/972151644' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a>
+    <script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'i05dm_iLSdxGRkP3Y3VSqQ',sig:'AqPE2rBFuks7Sz6-W2X82OKrlTcgueL2TWqbLrPrXN0=',w:'589px',h:'295px',items:'972151644',caption: true ,tld:'in',is360: true })});</script>
+    <script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script> -->
+  <meta charset="utf-8">
+  <title>Agent Portal</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <script>
+    if (global === undefined) {
+      var global = window;
+    }
+  </script>
+  <app-root></app-root>
+  <!-- <div class='container-fluid' style="height: 700px; background-color: rgba(255,0,0,0.1);">
+    <div class="row" style="height: inherit">
+      <div class='col-md-3'>
+          <div class="inbox_people">
+              <div class="headind_srch">
+                <div class="recent_heading">
+                  <h4>Request List</h4>
+                </div>
+                <div class="srch_bar">
+                  <div class="stylish-input-group">
+                    <input type="text" class="search-bar" [(ngModel)]="searchitem" name="searchitem" placeholder="Search">
+                    <span class="input-group-addon">
+                      <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                    </span> </div>
+                </div>
+              </div>
+              <div class="inbox_chat">
+                <div class="font-italic text-muted no-user-select d-flex justify-content-lg-center" *ngIf="list.length==0">No
+                  requests</div>
+                <div *ngFor="let user of list  | filter:searchitem ;let i = index" class="chat_list">            
+                  <div *ngIf="user.status=='Requested' " class="chat_people active_chat">
+                    <div class="chat_img"> <img src={{user.pic}} style="border-radius: 100%" alt=""> </div>
+                    <div class="chat_ib">
+                      <h5>{{user.name}}</h5>
+                      <span class="text-success text-sm-left font-italic">new Customer Service Chat Bot request!!</span><button
+                        class="btn float-right btn-outline-info" type="button" (click)="chatactive(user.id,i)">Accept</button>
+                    </div>
+                  </div>
+                   <div *ngIf="user.status=='Accepted'" (click)="chatactive(user.id,i)" class="chat_people">
+                    <div class="chat_img"> <img src={{user.pic}} style="border-radius: 100%" alt="{{name}}"> </div>
+                    <div class="chat_ib">
+                      <h5>{{user.name}}
+                      </h5>
+                      <p>{{user.status}}</p>
+                    </div>
+                  </div>
+                  <div *ngIf="user.status=='Ended'" (click)="chatactive(user.id,i)" class="chat_people">
+                    <div class="chat_img"> <img src={{user.pic}} style="border-radius: 100%" alt="{{name}}"> </div>
+                    <div class="chat_ib">
+                      <h5>{{user.name}}
+                      </h5>
+                      <p>{{user.status}}</p>
+                    </div>
+                  </div>
+                  <div *ngIf="user.status=='dummy'" (click)="chatactive(user.id,i)" class="chat_people">
+                    <div class="chat_img"> <img src={{user.pic}} style="border-radius: 100%" alt="{{name}}"> </div>
+                    <div class="chat_ib">
+                      <h5>{{user.name}}</h5>
+                      <p>Ended</p>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class='col-md-6' style="height: inherit">
+          <div id="chat_window" class="msg_history px-4">
+              <div *ngIf="conversation.length==0" class="">
+                <div class="row">
+                  <div class="col-md-12">
+                    <span class="font-italic text-muted no-user-select d-flex justify-content-lg-center">User not
+                      selected</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngFor="let msg of conversation">
+                <div *ngIf="msg.type === 'USER'" class="incoming_msg">
+                  <div class="incoming_msg_img"> <img src={{userpic}} style="border-radius: 100%" alt="sunil">
+                  </div>
+                  <div class="received_msg">
+                    <div class="received_withd_msg">
+                      <p>{{msg.text}}</p>
+                      <span class="time_date"> {{msg.date | date: 'short'}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="msg.type === 'Agent'" class="outgoing_msg">
+                  <div class="sent_msg">
+                    <p>{{msg.text}}</p>
+                    <span class="time_date">{{msg.date  | date: 'short'}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="type_msg">
+              <div class="input_msg_write">
+                <form #addTextInput="ngForm">
+                  <input [disabled]="!isSelected" type="text" class="write_msg" #message (keydown.enter)="onSubmit()"
+                    (keyup.enter)="message.value = ''" (keyup.escape)="dismiss.emit()" autofocus
+                    placeholder="Type a message" name="text" ngModel />
+                  <button [disabled]="!isSelected" class="msg_send_btn" type="submit" (click)="onSubmit()"><i
+                      class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                </form>
+              </div>
+            </div>
+      </div>
+      <div class='col-md-3'>
+        <div class="info-card-header text-center">
+          <p *ngIf="email==''">
+            <i>"When i think about great service ,
+              it's about how you take every interaction you have with the
+              customer and use that as a way to improve their perception of your organization"</i></p>
+          <h1>{{name}}</h1>
+          <p *ngIf="email!=''" class="title text-muted">
+            <i class="fa fa-envelope"> {{email}}</i>
+            <br />
+            <i class="fa fa-phone">{{phno}}</i>
+            <br />
+            <i class="fa fa-user"> Customer</i>
+          </p>
+        </div>
+         <p *ngIf="conversation.length!=0">
+                  <i>"When i think about great service ,
+                    it's about how you take every interaction you have with the
+                    customer and use that as a way to improve their perception of your organization"</i></p>               
+            <p  *ngIf="email!=''" class="title text-muted">
+      <button *ngIf="conversation.length!=0" type="button" class="btn end-button btn-outline-danger"
+        [disabled]="list[activeindex].end||list[activeindex].end.status=='dummy'" (click)="end()">End Conversation</button>
+      </div>
+    </div>
+  </div>
+
+  </div> -->
+
+</body>
+
+</html>
